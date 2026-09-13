@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toolify - Smart Digital Utilities & SaaS Tools</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 5rem 5% 3rem 5%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Tool Live Demo Section */
+        .tool-container {
+            max-width: 700px;
+            margin: 2rem auto;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .tool-container h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .tool-input-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .tool-input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .tool-input-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .output-box {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f1f5f9;
+            border-radius: 6px;
+            min-height: 60px;
+            text-align: left;
+            font-family: monospace;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 5%;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
+
+        /* Pricing Section */
+        .pricing {
+            text-align: center;
+            padding: 4rem 5%;
+            background: #edf2f7;
+        }
+
+        .price-card {
+            background: white;
+            max-width: 400px;
+            margin: 2rem auto 0 auto;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary);
+        }
+
+        .price-card h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        /* WhatsApp Chatbot Pop-up Box Widget */
+        .wa-chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .wa-chat-btn {
+            background: #25d366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .wa-chat-box {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 320px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border: 1px solid var(--border-color);
+            display: none;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .wa-chat-header {
+            background: #075e54;
+            color: white;
+            padding: 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wa-chat-body {
+            padding: 15px;
+            max-height: 250px;
+            overflow-y: auto;
+            font-size: 0.9rem;
+            background: #e5ddd5;
+        }
+
+        .wa-msg {
+            background: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            max-width: 85%;
+        }
+
+        .wa-chat-footer {
+            padding: 10px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .wa-chat-footer button {
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .wa-chat-footer button:hover {
+            background: #1ebe5d;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #0f172a;
+            color: white;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Toolify</div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#tool">Live Tool</a>
+            <a href="#features">Features</a>
+            <a href="#pricing" class="btn" style="padding: 0.5rem 1rem; color: white;">Get Pro</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+        <h1>Empower Your Workflow with Toolify Utilities</h1>
+        <p>Aapke rozmarra ke digital kaam ko asaan banane wale smart tools ka collection. Fast, secure, aur istemal karne mein behad asaan.</p>
+        <a href="#pricing" class="btn">Buy Full Access Now</a>
+    </section>
+
+    <!-- Interactive Tool Demo Section -->
+    <section class="tool-container" id="tool">
+        <h3>Try Toolify Live Demo</h3>
+        <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">Yahan aap apne tool ka chota version chala kar dekh sakte hain:</p>
+        
+        <div class="tool-input-group">
+            <label for="userInput">Enter text or data to process:</label>
+            <input type="text" id="userInput" placeholder="Type something here...">
+        </div>
+        <button class="btn" onclick="runTool()">Run Utility</button>
+
+        <div class="output-box" id="outputArea">
+            Result will appear here...
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="feature-card">
+            <h3>⚡ Lightning Fast</h3>
+            <p>Client-side processing ki wajah se yeh tools bina kisi delay ke foran natija dete hain.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🔒 100% Secure</h3>
+            <p>Aapka data puri tarah mehfooz rehta hai aur server par store nahi hota.</p>
+        </div>
+        <div class="feature-card">
+            <h3>📱 Fully Responsive</h3>
+            <p>Mobile, tablet aur desktop sabhi devices par behtareen kaam karte hain.</p>
+        </div>
+    </section>
+
+    <!-- Pricing / Sales Section -->
+    <section class="pricing" id="pricing">
+        <h2>Simple & Affordable Pricing</h2>
+        <p>Ek baar kharidein aur sabhi tools ka lifetime access hasil karein.</p>
+        
+        <div class="price-card">
+            <h3>Toolify Pro License</h3>
+            <h2>$19</h2>
+            <p style="color: #64748b; margin-bottom: 1.5rem;">One-time payment. No hidden fees.</p>
+            <ul style="text-align: left; margin-bottom: 1.5rem; list-style-position: inside; color: #475569;">
+                <li>Access to All Future Tools</li>
+                <li>Priority Updates</li>
+                <li>Customer Support via WhatsApp</li>
+            </ul>
+            <!-- Direct Checkout button jo customer ko aapke WhatsApp par notification bhejega -->
+            <a href="https://wa.me/923XXXXXXXXX?text=Hi!%20Maine%20Toolify%20Pro%20License%20kharidne%20ke%20liye%20payment%20kar%20di%20hai.%20Kindly%20mujhe%20access%20de%20dein." class="btn" style="width: 100%;" target="_blank">Buy & Confirm via WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- WhatsApp Floating Chatbot Widget -->
+    <div class="wa-chat-widget">
+        <div class="wa-chat-box" id="waBox">
+            <div class="wa-chat-header">
+                <span>💬 Toolify Assistant</span>
+                <span style="cursor: pointer;" onclick="toggleWaChat()">&times;</span>
+            </div>
+            <div class="wa-chat-body">
+                <div class="wa-msg">Hello! 👋 Welcome to Toolify. Aapko kis bare mein maloomat chahiye? Neeche diye gaye options par click karein:</div>
+            </div>
+            <div class="wa-chat-footer">
+                <button onclick="sendWaQuery('Tool ki price kiya hai?')">💰 Tool ki price kiya hai?</button>
+                <button onclick="sendWaQuery('Yeh tool kya kya kar sakta hai?')">⚙️ Yeh tool kya kar sakta hai?</button>
+                <button onclick="sendWaQuery('Mujhe Toolify Pro khareedna hai!')">🛒 Mujhe Toolify Pro khareedna hai!</button>
+            </div>
+        </div>
+        <button class="wa-chat-btn" onclick="toggleWaChat()">💬 Chat with Us</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Toolify. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript Scripts -->
+    <script>
+        // Demo Tool Logic
+        function runTool() {
+            const input = document.getElementById('userInput').value;
+            const output = document.getElementById('outputArea');
+            
+            if(input.trim() === "") {
+                output.innerHTML = "Error: Please enter some text first!";
+                return;
+            }
+
+            const wordCount = input.trim().split(/\s+/).length;
+            const charCount = input.length;
+            const reversed = input.split('').reverse().join('');
+
+            output.innerHTML = `<strong>Processed Successfully!</strong><br>` +
+                               `- Characters: ${charCount}<br>` +
+                               `- Words: ${wordCount}<br>` +
+                               `- Reversed: ${reversed}`;
+        }
+
+        // WhatsApp Chatbot Toggle
+        function toggleWaChat() {
+            const box = document.getElementById('waBox');
+            box.style.display = box.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Send Custom Query directly to WhatsApp
+        function sendWaQuery(question) {
+            // NOTE: Replace 923XXXXXXXXX with your actual WhatsApp phone number including country code
+            const phoneNumber = "923242546651"; 
+            const encodedMessage = encodeURIComponent(question);
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        }
+    </script>
+</body>
+</html>
